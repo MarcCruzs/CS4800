@@ -1,28 +1,21 @@
 package HW4.Macronutrient;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Driver {
     public static void main(String[] args) {
-        List<Customer> customers = createCustomers();
-        AbstractFactory abstractFactory = new MacronutrientFactory();
-        MealGenerator mealGenerator = new MealGenerator(abstractFactory);
+        Customer[] customers = {
+                new Customer("John", DietPlan.NO_RESTRICTION),
+                new Customer("George", DietPlan.PALEO),
+                new Customer("Jim", DietPlan.VEGAN),
+                new Customer("Mike", DietPlan.NUT_ALLERGY),
+                new Customer("Gilbert", DietPlan.NO_RESTRICTION),
+                new Customer("Daniel", DietPlan.VEGAN)
+        };
 
         for (Customer customer : customers) {
-            String meal = mealGenerator.generateMeal(customer);
-            System.out.println(customer.getName() + "'s Meal: " + meal);
+            System.out.println(customer.getName() + "'s " + customer.getDietPlan() + " Meal:");
+            Meal meal = customer.generateMeal();
+            System.out.println(meal);
+            System.out.println("---------------------");
         }
     }
-
-    private static List<Customer> createCustomers() {
-        List<Customer> customers = new ArrayList<>();
-        customers.add(new Customer("Alice", "No Restriction"));
-        customers.add(new Customer("Bob", "Paleo"));
-        customers.add(new Customer("Charlie", "Vegan"));
-        customers.add(new Customer("David", "Nut Allergy"));
-        customers.add(new Customer("Eve", "Paleo"));
-        customers.add(new Customer("Frank", "No Restriction"));
-        return customers;
-    }
 }
+

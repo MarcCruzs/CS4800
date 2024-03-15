@@ -2,9 +2,9 @@ package HW4.Macronutrient;
 
 public class Customer {
     private String name;
-    private String dietPlan;
+    private DietPlan dietPlan;
 
-    public Customer(String name, String dietPlan) {
+    public Customer(String name, DietPlan dietPlan) {
         this.name = name;
         this.dietPlan = dietPlan;
     }
@@ -13,7 +13,12 @@ public class Customer {
         return name;
     }
 
-    public String getDietPlan() {
+    public DietPlan getDietPlan() {
         return dietPlan;
+    }
+
+    public Meal generateMeal() {
+        MacronutrientFactory factory = MacronutrientFactorySingleton.getInstance().getFactory(dietPlan);
+        return factory.createMeal();
     }
 }
