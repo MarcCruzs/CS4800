@@ -12,23 +12,13 @@ public class CarbsFactory implements MacronutrientFactory {
     @Override
     public String createMeal() {
         Random random = new Random();
-        String[] options;
-        switch (dietPlan) {
-            case NO_RESTRICTION:
-                options = new String[]{"Cheese", "Bread", "Lentils", "Pistachio"};
-                break;
-            case PALEO:
-                options = new String[]{"Pistachio"};
-                break;
-            case VEGAN:
-                options = new String[]{"Bread", "Lentils", "Pistachio"};
-                break;
-            case NUT_ALLERGY:
-                options = new String[]{"Cheese", "Bread", "Lentils"};
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid diet plan");
-        }
+        String[] options = switch (dietPlan) {
+            case NO_RESTRICTION -> new String[]{"Cheese", "Bread", "Lentils", "Pistachio"};
+            case PALEO -> new String[]{"Pistachio"};
+            case VEGAN -> new String[]{"Bread", "Lentils", "Pistachio"};
+            case NUT_ALLERGY -> new String[]{"Cheese", "Bread", "Lentils"};
+            default -> throw new IllegalArgumentException("Invalid diet plan");
+        };
         return options[random.nextInt(options.length)];
     }
 }

@@ -2,13 +2,13 @@ package HW4.Pizza;
 public class PizzaDriver {
     public static void main(String[] args) {
         // TASK 1
-        Pizza pizza1 = new PizzaBuilder("small","Dummy Pizza Chain")
+        Pizza pizza1 = new PizzaBuilder("small","")
                 .addTopping(Topping.PEPPERONI)
                 .addTopping(Topping.SAUSAGE)
                 .addTopping(Topping.MUSHROOMS)
                 .build();
 
-        Pizza pizza2 = new PizzaBuilder("Medium", "Dummy Pizza Chain")
+        Pizza pizza2 = new PizzaBuilder("Medium", "")
                 .addTopping(Topping.PEPPERONI)
                 .addTopping(Topping.SAUSAGE)
                 .addTopping(Topping.MUSHROOMS)
@@ -17,7 +17,7 @@ public class PizzaDriver {
                 .addTopping(Topping.EXTRA_CHEESE)
                 .build();
 
-        Pizza pizza3 = new PizzaBuilder("Large", "Dummy Pizza Chain")
+        Pizza pizza3 = new PizzaBuilder("Large", "")
                 .addTopping(Topping.PEPPERS)
                 .addTopping(Topping.CHICKEN)
                 .addTopping(Topping.OLIVES)
