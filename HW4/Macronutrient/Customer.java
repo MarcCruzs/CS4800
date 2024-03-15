@@ -18,7 +18,12 @@ public class Customer {
     }
 
     public Meal generateMeal() {
-        MacronutrientFactory factory = MacronutrientFactorySingleton.getInstance().getFactory(dietPlan);
-        return factory.createMeal();
+        MacronutrientFactorySingleton factorySingleton = MacronutrientFactorySingleton.getInstance(dietPlan);
+        MacronutrientFactory carbsFactory = factorySingleton.getCarbsFactory();
+        MacronutrientFactory proteinsFactory = factorySingleton.getProteinsFactory();
+        MacronutrientFactory fatsFactory = factorySingleton.getFatsFactory();
+
+        return new Meal(carbsFactory, proteinsFactory, fatsFactory);
     }
 }
+

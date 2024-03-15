@@ -3,37 +3,33 @@ package HW4.Macronutrient;
 public class MacronutrientFactorySingleton {
     private static MacronutrientFactorySingleton instance;
 
-    private MacronutrientFactory noRestrictionFactory;
-    private MacronutrientFactory paleoFactory;
-    private MacronutrientFactory veganFactory;
-    private MacronutrientFactory nutAllergyFactory;
+    private MacronutrientFactory carbsFactory;
+    private MacronutrientFactory proteinsFactory;
+    private MacronutrientFactory fatsFactory;
 
-    private MacronutrientFactorySingleton() {
-        noRestrictionFactory = new NoRestrictionFactory();
-        paleoFactory = new PaleoFactory();
-        veganFactory = new VeganFactory();
-        nutAllergyFactory = new NutAllergyFactory();
+    private MacronutrientFactorySingleton(DietPlan dietPlan) {
+        carbsFactory = new CarbsFactory(dietPlan);
+        proteinsFactory = new ProteinsFactory(dietPlan);
+        fatsFactory = new FatsFactory(dietPlan);
     }
 
-    public static MacronutrientFactorySingleton getInstance() {
+    public static MacronutrientFactorySingleton getInstance(DietPlan dietPlan) {
         if (instance == null) {
-            instance = new MacronutrientFactorySingleton();
+            instance = new MacronutrientFactorySingleton(dietPlan);
         }
         return instance;
     }
 
-    public MacronutrientFactory getFactory(DietPlan dietPlan) {
-        switch (dietPlan) {
-            case NO_RESTRICTION:
-                return noRestrictionFactory;
-            case PALEO:
-                return paleoFactory;
-            case VEGAN:
-                return veganFactory;
-            case NUT_ALLERGY:
-                return nutAllergyFactory;
-            default:
-                throw new IllegalArgumentException("Invalid diet plan");
-        }
+    public MacronutrientFactory getCarbsFactory() {
+        return carbsFactory;
+    }
+
+    public MacronutrientFactory getProteinsFactory() {
+        return proteinsFactory;
+    }
+
+    public MacronutrientFactory getFatsFactory() {
+        return fatsFactory;
     }
 }
+
