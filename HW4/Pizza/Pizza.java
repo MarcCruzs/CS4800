@@ -18,7 +18,8 @@ public class Pizza {
         this.toppings = new ArrayList<>();
     }
 
-    public void addTopping(Topping topping) {
+    public void addTopping(Topping topping)
+    {
         toppings.add(topping);
     }
 
