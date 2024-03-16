@@ -12,14 +12,26 @@ public class FatsFactory implements MacronutrientFactory {
     @Override
     public String createMeal() {
         Random random = new Random();
-        String[] options = switch (dietPlan) {
-            case NO_RESTRICTION -> new String[]{"Avocado", "Sour cream", "Tuna", "Peanuts"};
-            case PALEO -> new String[]{"Avocado", "Tuna", "Peanuts"};
-            case VEGAN -> new String[]{"Avocado", "Peanuts"};
-            case NUT_ALLERGY -> new String[]{"Avocado", "Sour cream", "Tuna"};
-            default -> throw new IllegalArgumentException("Invalid diet plan");
-        };
-        return options[random.nextInt(options.length)];
+        Fat[] options;
+        switch (dietPlan) {
+            case NO_RESTRICTION:
+                options = new Fat[]{new Avocado(), new SourCream(), new Tuna(), new Peanuts()};
+                break;
+            case PALEO:
+                options = new Fat[]{new Avocado(), new Tuna(), new Peanuts()};
+                break;
+            case VEGAN:
+                options = new Fat[]{new Avocado(), new Peanuts()};
+                break;
+            case NUT_ALLERGY:
+                options = new Fat[]{new Avocado(), new SourCream(), new Tuna()};
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid diet plan");
+        }
+
+        int index = random.nextInt(options.length);
+        Fat selectedFat = options[index];
+        return selectedFat.getName();
     }
 }
-
