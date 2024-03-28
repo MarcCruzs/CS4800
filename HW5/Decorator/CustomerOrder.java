@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class CustomerOrder {
     private ArrayList<Item> customerOrderList = new ArrayList<>();
+    private String loyaltyStatus = "None";
 
     public CustomerOrder(){
     }
@@ -20,4 +21,12 @@ public class CustomerOrder {
 
         return totalCost;
         }
+
+    public String getLoyaltyStatus() {
+        return loyaltyStatus;
+    }
+
+    public ArrayList<Item> getCustomerOrderList() {
+        return customerOrderList;
+    }
 }
