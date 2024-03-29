@@ -12,7 +12,7 @@ public class CustomerOrder {
     public void addItemToOrder(Item item){
         customerOrderList.add(item);
     }
-
+  
     public double calculateTotalCost(){
         double totalCost = 0;
         for (int i = 0; i < customerOrderList.size(); i++) {

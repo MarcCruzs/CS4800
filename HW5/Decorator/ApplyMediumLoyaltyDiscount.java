@@ -8,7 +8,7 @@ public class ApplyMediumLoyaltyDiscount extends CustomerOrder {
     public ApplyMediumLoyaltyDiscount(CustomerOrder customerOrder){
         this.customerOrder = customerOrder;
     }
-
+  
     @Override
     public double calculateTotalCost() {
         double preDiscountTotalCost;
