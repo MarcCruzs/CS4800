@@ -12,4 +12,3 @@ public class ItemWithExtraEgg implements Item{
         return cost;
     }
 }
-

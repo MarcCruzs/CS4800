@@ -4,9 +4,11 @@ public class ApplyMediumLoyaltyDiscount extends CustomerOrder {
     String loyaltyStatus = "Medium";
     private double discountPercent = .20;
     private CustomerOrder customerOrder;
+
     public ApplyMediumLoyaltyDiscount(CustomerOrder customerOrder){
         this.customerOrder = customerOrder;
     }
+
     @Override
     public double calculateTotalCost() {
         double preDiscountTotalCost;

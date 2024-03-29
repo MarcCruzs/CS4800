@@ -1,4 +1,4 @@
-package HW5.Decorator.Test;
+package HW5.DecoratorTest;
 import HW5.Decorator.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,7 +8,7 @@ class DriverTest {
         CustomerOrder order = new CustomerOrder();
         Item burger = new FoodItem(5.00);
         order.addItemToOrder(burger);
-        assertEquals(1, order.getCustomerOrderList().size()); // Ensure item added to order
+        assertEquals(1, order.getCustomerOrderList().size());
     }
 
     @org.junit.jupiter.api.Test
@@ -32,6 +32,7 @@ class DriverTest {
         assertEquals(10.00, order.calculateTotalCost(), 0.001);
         assertEquals("None", order.getLoyaltyStatus());
     }
+
     @org.junit.jupiter.api.Test
     public void testApplyLowLoyaltyDiscount() {
         CustomerOrder order = new CustomerOrder();

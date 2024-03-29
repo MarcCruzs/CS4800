@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class FoodItem implements Item {
     private double cost;
-
     private ArrayList<Item> toppingList = new ArrayList<>();
 
     public FoodItem(double cost) {
@@ -16,5 +15,9 @@ public class FoodItem implements Item {
 
     public double getCost() {
         return cost;
+    }
+
+    public ArrayList<Item> getToppingList() {
+        return toppingList;
     }
 }
