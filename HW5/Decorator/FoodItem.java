@@ -17,4 +17,8 @@ public class FoodItem implements Item {
     public double getCost() {
         return cost;
     }
+
+    public ArrayList<Item> getToppingList() {
+        return toppingList;
+    }
 }
