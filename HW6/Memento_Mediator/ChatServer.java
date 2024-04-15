@@ -44,21 +44,36 @@ public class ChatServer {
             if (recipient != null) {
                 if (isUserBlocked(sender, recipient)) {
                     System.out.println(recipientName + " blocked " + senderName);
-                } else {
-                    ChatHistory senderChatHistory = getOrCreateChatHistory(senderName, recipientName);
-                    senderChatHistory.addMessage(messageContent); // Save the message in sender's chat history
-                    updateChatHistoryMap(senderName, recipientName, senderChatHistory);
-
-                    ChatHistory recipientChatHistory = getOrCreateChatHistory(recipientName, senderName);
-                    recipientChatHistory.addMessage(messageContent); // Save the message in recipient's chat history
-                    updateChatHistoryMap(recipientName, senderName, recipientChatHistory);
+                }
+                else {
+                    updateChatHistoryMap(senderName, recipientName, messageContent);
+                    updateChatHistoryMap(recipientName, senderName, messageContent);
 
                     recipient.receiveMessage(messageContent);
                 }
-            } else {
+            }
+            else {
                 System.out.println("Recipient " + recipientName + " not found.");
             }
         }
+    }
+
+    public void updateChatHistoryMap(String userName, String otherName, Message messageContent) {
+        ChatHistory chatHistory = getOrCreateChatHistory(userName, otherName);
+        chatHistory.addMessage(messageContent);
+        Map<String, ChatHistory> userChatHistories = chatHistories.getOrDefault(userName, new HashMap<>());
+
+        userChatHistories.put(otherName, chatHistory);
+        chatHistories.put(userName, userChatHistories);
+    }
+
+
+    private ChatHistory getOrCreateChatHistory(String senderName, String recipientName) {
+        Map<String, ChatHistory> senderChatHistories = chatHistories.getOrDefault(senderName, new HashMap<>());
+        ChatHistory senderChatHistory = senderChatHistories.computeIfAbsent(recipientName, k -> new ChatHistory());
+        chatHistories.put(senderName, senderChatHistories);
+
+        return senderChatHistory;
     }
 
     public void undoLastMessage(User user) {
@@ -67,21 +82,17 @@ public class ChatServer {
         if (userChatHistories != null) {
             // Iterate over each chat history and remove the last message
             for (ChatHistory chatHistory : userChatHistories.values()) {
-                chatHistory.removeLastMessage(user);
+                chatHistory.removeLastMessage(chatHistory.getMemento());
+            }
+
+            for (Map<String, ChatHistory> chatHistories : chatHistories.values()) {
+                ChatHistory chatHistory = chatHistories.get(user.getName());
+                if (chatHistory != null) {
+                    chatHistory.removeLastMessage(chatHistory.getMemento());
+                }
             }
         }
     }
-
-
-
-
-    public void updateChatHistoryMap(String userName, String otherUser, ChatHistory chatHistory) {
-        Map<String, ChatHistory> userChatHistories = chatHistories.getOrDefault(userName, new HashMap<>());
-        userChatHistories.put(otherUser, chatHistory);
-        chatHistories.put(userName, userChatHistories);
-    }
-
-
 
     public void blockUser(String blocker, String userToBlock) {
         List<String> blocked = blockedUsers.getOrDefault(blocker, new ArrayList<>());
@@ -115,13 +126,14 @@ public class ChatServer {
         ChatHistory chatHistory = getChatHistoryForUser(userName, otherUser);
         if (chatHistory == null) {
             System.out.println("No chat history found for user " + otherUser + ".");
-        } else {
+        }
+        else {
             System.out.println("Chat history with " + otherUser + ":");
             chatHistory.printChatHistory(userName);
         }
     }
 
-    private ChatHistory getChatHistoryForUser(String senderName, String recipientName) {
+    public ChatHistory getChatHistoryForUser(String senderName, String recipientName) {
         Map<String, ChatHistory> userChatHistories = chatHistories.get(senderName);
         if (userChatHistories != null) {
             return userChatHistories.get(recipientName);
@@ -129,25 +141,9 @@ public class ChatServer {
         return null;
     }
 
-
-
-    private ChatHistory getOrCreateChatHistory(String senderName, String recipientName) {
-        // Get or create chat histories for both sender and recipient
-        Map<String, ChatHistory> senderChatHistories = chatHistories.getOrDefault(senderName, new HashMap<>());
-        Map<String, ChatHistory> recipientChatHistories = chatHistories.getOrDefault(recipientName, new HashMap<>());
-
-        // Get or create chat history for the sender
-        ChatHistory senderChatHistory = senderChatHistories.computeIfAbsent(recipientName, k -> new ChatHistory());
-
-        // Get or create chat history for the recipient
-        ChatHistory recipientChatHistory = recipientChatHistories.computeIfAbsent(senderName, k -> new ChatHistory());
-
-        // Update chatHistories map
-        chatHistories.put(senderName, senderChatHistories);
-        chatHistories.put(recipientName, recipientChatHistories);
-
-        // Return the chat history for the sender
-        return senderChatHistory;
+    public ChatHistory getChatHistoryForUser(String userName) {
+        Map<String, ChatHistory> userChatHistories = chatHistories.get(userName);
+        return userChatHistories != null ? userChatHistories.get(userName) : null;
     }
 
     private boolean isUserBlocked(User sender, User recipient) {
@@ -157,5 +153,9 @@ public class ChatServer {
 
     private boolean isSenderRegistered(User user) {
         return registeredUsers.contains(user);
+    }
+
+    public Map<String, Map<String, ChatHistory>> getChatHistories(){
+        return chatHistories;
     }
 }

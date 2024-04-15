@@ -2,8 +2,9 @@ package HW6.Memento_Mediator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
-public class ChatHistory {
+public class ChatHistory implements IterableByUser{
     private List<MessageMemento> messageHistory;
 
     public ChatHistory() {
@@ -14,25 +15,23 @@ public class ChatHistory {
         messageHistory.add(new MessageMemento(message));
     }
 
-    public MessageMemento createMemento() {
+    public MessageMemento getMemento() {
         if (!messageHistory.isEmpty()) {
-            return messageHistory.get(messageHistory.size() - 1); // Get the Memento of the last message
+            return messageHistory.get(messageHistory.size() - 1);
         }
         return null;
     }
 
-
-    public void removeLastMessage(User user) {
+    public void removeLastMessage(MessageMemento user) {
         if (!messageHistory.isEmpty()) {
             for (int i = messageHistory.size() - 1; i >= 0; i--) {
                 MessageMemento memento = messageHistory.get(i);
-                if (memento.getSender().equals(user.getName())) {
+                if (memento.getMessageContent().equals(user.getMessageContent())) {
                     messageHistory.remove(i);
                 }
             }
         }
     }
-
 
     public void printChatHistory(String userName) {
         for (MessageMemento memento : messageHistory) {
@@ -52,6 +51,17 @@ public class ChatHistory {
                 System.out.println("[" + timestamp + "] " + sender + " -> " + recipientString + ": " + message);
             }
         }
+    }
+
+    @Override
+    public Iterator<Message> iterator(User userToSearchWith) {
+        List<Message> filteredMessages = new ArrayList<>();
+        for (MessageMemento message : messageHistory) {
+            if (message.getSender().equals(userToSearchWith.getName()) || message.getRecipients().contains(userToSearchWith.getName())) {
+                filteredMessages.add(message.getMessageState());
+            }
+        }
+        return filteredMessages.iterator();
     }
 }
 

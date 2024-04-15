@@ -1,6 +1,7 @@
 package HW6.Memento_Mediator;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Main {
@@ -53,13 +54,24 @@ public class Main {
         System.out.println("\nUser1 Chat History:");
         user1.viewChatHistoryWithUser("User2");
 
-        System.out.println("\nUser2 Chat History: *USER1 UNDO  MESSAGE*");
+        System.out.println("\nUser2 Chat History: *USER1 UNSENT THEIR LAST MESSAGE*");
         user1.undoLastMessage();
         user2.viewChatHistoryWithUser("User1");
 
         System.out.println("\nUser3 Chat History:");
         user3.viewChatHistoryWithUser("User2");
 
+        System.out.println("\nIterator of user1:");
+        ChatHistory user1ChatHistory = user2.getChatHistory();
+        if (user1ChatHistory != null) {
+            Iterator<Message> iterator = new UserMessageIterator(user1);
+            while (iterator.hasNext()) {
+                Message message = iterator.next();
+                System.out.println("Message: " + message.getMessageContent());
+            }
+        } else {
+            System.out.println("User1's chat history is null.");
+        }
 
     }
 }
