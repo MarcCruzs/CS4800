@@ -1,4 +1,5 @@
 package HW6.Memento_Mediator;
+
 import java.util.ArrayList;
 
 public class Message {

@@ -76,19 +76,20 @@ public class ChatServer {
         return senderChatHistory;
     }
 
-    public void undoLastMessage(User user) {
-        // Retrieve the chat history of the user
+    public void undoLastMessage(User user, String otherUser) {
         Map<String, ChatHistory> userChatHistories = chatHistories.get(user.getName());
+
         if (userChatHistories != null) {
-            // Iterate over each chat history and remove the last message
-            for (ChatHistory chatHistory : userChatHistories.values()) {
+            ChatHistory chatHistory = userChatHistories.get(otherUser);
+
+            if (chatHistory != null) {
                 chatHistory.removeLastMessage(chatHistory.getMemento());
             }
 
             for (Map<String, ChatHistory> chatHistories : chatHistories.values()) {
-                ChatHistory chatHistory = chatHistories.get(user.getName());
-                if (chatHistory != null) {
-                    chatHistory.removeLastMessage(chatHistory.getMemento());
+                ChatHistory otherUserHistory = chatHistories.get(user.getName());
+                if (otherUserHistory != null) {
+                    otherUserHistory.removeLastMessage(otherUserHistory.getMemento());
                 }
             }
         }
@@ -141,11 +142,6 @@ public class ChatServer {
         return null;
     }
 
-    public ChatHistory getChatHistoryForUser(String userName) {
-        Map<String, ChatHistory> userChatHistories = chatHistories.get(userName);
-        return userChatHistories != null ? userChatHistories.get(userName) : null;
-    }
-
     private boolean isUserBlocked(User sender, User recipient) {
         List<String> blocked = blockedUsers.getOrDefault(recipient.getName(), new ArrayList<>());
         return blocked.contains(sender.getName());
@@ -153,10 +149,6 @@ public class ChatServer {
 
     private boolean isSenderRegistered(User user) {
         return registeredUsers.contains(user);
-    }
-
-    public Map<String, Map<String, ChatHistory>> getChatHistories(){
-        return chatHistories;
     }
 
     public List<User> getRegisteredUsers() {

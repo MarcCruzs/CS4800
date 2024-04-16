@@ -55,7 +55,7 @@ public class Main {
         user1.viewChatHistoryWithUser("User2");
 
         System.out.println("\nUser2 Chat History: *USER1 UNSENT THEIR LAST MESSAGE*");
-        user1.undoLastMessage();
+        user1.undoLastMessage("User2");
         user2.viewChatHistoryWithUser("User1");
 
         System.out.println("\nUser3 Chat History:");
@@ -66,6 +66,15 @@ public class Main {
 
         while (MessageIterator.hasNext()) {
             Message message = MessageIterator.next();
+            System.out.println(message);
+        }
+
+        System.out.println("\nIterator of user2:");
+        Iterator<Message> MessageIterator2 = user2.getMessageIterator();
+
+        while (MessageIterator2.hasNext()) {
+            Message message2 = MessageIterator2.next();
+            System.out.println(message2);
         }
 
     }

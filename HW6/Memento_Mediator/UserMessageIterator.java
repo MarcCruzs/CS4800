@@ -14,8 +14,6 @@ public class UserMessageIterator implements IterableByUser {
     @Override
     public Iterator<Message> iterator(User userToSearchWith) {
         List<Message> filteredMessages = new ArrayList<>();
-
-        List<User> filteredList = new ArrayList<>();
         List<User> registeredUsers = server.getRegisteredUsers();
 
         for (User user : registeredUsers) {

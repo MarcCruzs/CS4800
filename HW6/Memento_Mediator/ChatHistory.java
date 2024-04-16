@@ -2,7 +2,6 @@ package HW6.Memento_Mediator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Iterator;
 
 public class ChatHistory {
     private List<MessageMemento> messageHistory;

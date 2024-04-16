@@ -11,7 +11,6 @@ public class User {
     private Stack<MessageMemento> messageHistory = new Stack<>();
     private Message userMessage = new Message();
     private ChatServer server;
-    private ChatHistory chatHistory;
     public User(String name, ChatServer server) {
         this.name = name;
         this.server = server;
@@ -39,22 +38,18 @@ public class User {
         System.out.println("[" + message.getTimestamp() + "] " + message.getSender() + ": " + message.getMessageContent());
     }
 
-    public void undoLastMessage(){
-        server.undoLastMessage(this);
+    public void undoLastMessage(String otherUser){
+        server.undoLastMessage(this, otherUser);
     }
 
     public void blockUser(String userToBlock) {
         server.blockUser(this.name, userToBlock);
+        blocked.add(userToBlock);
     }
 
     public void viewChatHistoryWithUser(String otherUser) {
         server.viewChatHistoryWithUser(this.name, otherUser);
     }
-
-    public ChatHistory getChatHistory(){
-        return server.getChatHistoryForUser(this.getName());
-    }
-
 
     public ArrayList<String> getBlocked() {
         return blocked;
@@ -62,6 +57,10 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public Stack<MessageMemento> getMessageHistory() {
+        return messageHistory;
     }
 
     public Iterator<Message> getMessageIterator() {
