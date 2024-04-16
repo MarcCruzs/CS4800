@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
-public class ChatHistory implements IterableByUser{
+public class ChatHistory {
     private List<MessageMemento> messageHistory;
 
     public ChatHistory() {
@@ -51,17 +51,6 @@ public class ChatHistory implements IterableByUser{
                 System.out.println("[" + timestamp + "] " + sender + " -> " + recipientString + ": " + message);
             }
         }
-    }
-
-    @Override
-    public Iterator<Message> iterator(User userToSearchWith) {
-        List<Message> filteredMessages = new ArrayList<>();
-        for (MessageMemento message : messageHistory) {
-            if (message.getSender().equals(userToSearchWith.getName()) || message.getRecipients().contains(userToSearchWith.getName())) {
-                filteredMessages.add(message.getMessageState());
-            }
-        }
-        return filteredMessages.iterator();
     }
 }
 

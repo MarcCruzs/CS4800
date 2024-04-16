@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.Stack;
 
-public class User implements IterableByUser{
+public class User {
     private String name;
     private ArrayList<String> blocked = new ArrayList<>();
     private Stack<MessageMemento> messageHistory = new Stack<>();
@@ -64,19 +64,8 @@ public class User implements IterableByUser{
         return name;
     }
 
-    @Override
-    public UserMessageIterator iterator(User userToSearchWith) {
-        return new UserMessageIterator(userToSearchWith);
-    }
-
-    public Iterator<Message> getMessageIterator(User userToSearchWith) {
-        ChatHistory chatHistory = userToSearchWith.getChatHistory();
-        if (chatHistory != null) {
-            return chatHistory.iterator(userToSearchWith);
-        } else {
-            // Handle the case when chatHistory is null (e.g., log an error or return an empty iterator)
-            return new ArrayList<Message>().iterator();
-        }
+    public Iterator<Message> getMessageIterator() {
+        return new UserMessageIterator(server).iterator(this);
     }
 }
 

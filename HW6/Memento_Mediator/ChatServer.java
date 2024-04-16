@@ -158,4 +158,8 @@ public class ChatServer {
     public Map<String, Map<String, ChatHistory>> getChatHistories(){
         return chatHistories;
     }
+
+    public List<User> getRegisteredUsers() {
+        return registeredUsers;
+    }
 }

@@ -62,15 +62,10 @@ public class Main {
         user3.viewChatHistoryWithUser("User2");
 
         System.out.println("\nIterator of user1:");
-        ChatHistory user1ChatHistory = user2.getChatHistory();
-        if (user1ChatHistory != null) {
-            Iterator<Message> iterator = new UserMessageIterator(user1);
-            while (iterator.hasNext()) {
-                Message message = iterator.next();
-                System.out.println("Message: " + message.getMessageContent());
-            }
-        } else {
-            System.out.println("User1's chat history is null.");
+        Iterator<Message> MessageIterator = user1.getMessageIterator();
+
+        while (MessageIterator.hasNext()) {
+            Message message = MessageIterator.next();
         }
 
     }
