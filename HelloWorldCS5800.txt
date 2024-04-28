@@ -1,0 +1,24 @@
+Paragraph: 1
+Font: Arial
+Color: Red
+Size: 12
+Text: Hello World!
+
+Paragraph: 2
+Font: Calibri
+Color: Blue
+Size: 14
+Text: This is a sample paragraph.
+
+Paragraph: 3
+Font: Verdana
+Color: Black
+Size: 16
+Text: Flyweight Pattern Example
+
+Paragraph: 4
+Font: Arial
+Color: Black
+Size: 12
+Text: Lorem ipsum dolor sit amet.
+
