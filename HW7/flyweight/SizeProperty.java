@@ -1,14 +1,10 @@
 package HW7.flyweight;
 
-class SizeProperty implements CharacterProperty {
+public class SizeProperty implements CharacterProperty {
     private int size;
 
     public SizeProperty(int size) {
         this.size = size;
-    }
-
-    public void apply() {
-        System.out.println("Applying size: " + size);
     }
 
     @Override

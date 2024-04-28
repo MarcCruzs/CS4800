@@ -3,8 +3,7 @@ package HW7.flyweight;
 import java.util.HashMap;
 import java.util.Map;
 
-// Flyweight Factory to manage character properties
-class CharacterPropertyFactory {
+public class CharacterPropertyFactory {
     private Map<String, CharacterProperty> properties = new HashMap<>();
 
     public CharacterProperty getFont(String font) {

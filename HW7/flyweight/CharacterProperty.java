@@ -1,5 +1,5 @@
 package HW7.flyweight;
 
-interface CharacterProperty {
-    void apply();
+public interface CharacterProperty {
+    String toString();
 }

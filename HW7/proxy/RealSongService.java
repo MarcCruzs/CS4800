@@ -12,6 +12,8 @@ public class RealSongService implements SongService {
         songs.add(new Song("Song1", "Artist1", "Album1", 240));
         songs.add(new Song("Song2", "Artist2", "Album2", 180));
         songs.add(new Song("Song3", "Artist1", "Album3", 300));
+        songs.add(new Song("Song4", "Artist3", "Album4", 124));
+        songs.add(new Song("Song5", "Artist3", "Album5", 321));
     }
 
     @Override
