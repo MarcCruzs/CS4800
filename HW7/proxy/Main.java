@@ -12,13 +12,16 @@ public class Main {
 
         // Test searching by title
         System.out.println("\nSearching by Title:");
-        System.out.println(songService.searchByTitle("song"));
-        System.out.println(songService.searchByTitle("song"));
+        System.out.println(songService.searchByTitle("song1"));
+        System.out.println(songService.searchByTitle("song3"));
+        System.out.println(songService.searchByTitle("song1"));
+
 
         // Test searching by album
         System.out.println("\nSearching by Album:");
-        System.out.println(songService.searchByAlbum("album"));
-        System.out.println(songService.searchByAlbum("album"));
+        System.out.println(songService.searchByAlbum("album2"));
+        System.out.println(songService.searchByAlbum("album1"));
+        System.out.println(songService.searchByAlbum("album2"));
     }
 }
 

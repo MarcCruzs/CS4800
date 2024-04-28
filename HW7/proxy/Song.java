@@ -6,7 +6,6 @@ public class Song {
     private String album;
     private int duration;
 
-    // Constructor, getters, and setters
     public Song(String title, String artist, String album, int duration) {
         this.title = title;
         this.artist = artist;
@@ -14,7 +13,6 @@ public class Song {
         this.duration = duration;
     }
 
-    // Getters and Setters
     public String getTitle() {
         return title;
     }
@@ -31,14 +29,7 @@ public class Song {
         return duration;
     }
 
-    // toString() method for easy printing
-    @Override
-    public String toString() {
-        return "Song{" +
-                "title='" + title + '\'' +
-                ", artist='" + artist + '\'' +
-                ", album='" + album + '\'' +
-                ", duration=" + duration +
-                '}';
+    public String toString(){
+        return title + " - " + artist + " - " + album + " - " + duration;
     }
 }
