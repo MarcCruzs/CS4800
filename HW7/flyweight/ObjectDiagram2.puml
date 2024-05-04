@@ -1,0 +1,369 @@
+@startuml
+left to right direction
+
+object "<u>testDocument : Document</u>" as testDocument{
+    characters = Character1, Character2, Character3,
+    Character4, Character5, Character6, Character7,
+    Character8, Character9, Character10, Character11,
+    Character12, Character13, Character14, Character15,
+    Character16
+    propertiesFactory = propertiesFactory
+}
+
+
+
+
+object "<u>Character1 : Character</u>" as Character1{
+    character = 'H'
+    characterProperty = propertiesA_v1
+}
+
+object "<u>Character2 : Character</u>" as Character2{
+    character = 'e'
+    characterProperty = propertiesA_v2
+}
+
+object "<u>Character3 : Character</u>" as Character3{
+    character = 'l'
+    characterProperty = propertiesA_v2
+}
+
+object "<u>Character4 : Character</u>" as Character4{
+    character = 'l'
+    characterProperty = propertiesA_v2
+}
+
+object "<u>Character5 : Character</u>" as Character5{
+    character = 'o'
+    characterProperty = propertiesA_v2
+}
+
+object "<u>Character6 : Character</u>" as Character6{
+    character = 'W'
+    characterProperty = propertiesA_v1
+}
+
+object "<u>Character7 : Character</u>" as Character7{
+    character = 'o'
+    characterProperty = propertiesA_v2
+}
+
+object "<u>Character8 : Character</u>" as Character8{
+    character = 'r'
+    characterProperty = propertiesA_v2
+}
+
+object "<u>Character9 : Character</u>" as Character9{
+    character = 'l'
+    characterProperty = propertiesA_v2
+}
+
+object "<u>Character10 : Character</u>" as Character10{
+    character = 'd'
+    characterProperty = propertiesA_v2
+}
+
+object "<u>Character11 : Character</u>" as Character11{
+    character = 'C'
+    characterProperty = propertiesB_v1
+}
+
+object "<u>Character12 : Character</u>" as Character12{
+    character = 'S'
+    characterProperty = propertiesB_v1
+}
+
+object "<u>Character13 : Character</u>" as Character13{
+    character = '5'
+    characterProperty = propertiesB_v2
+}
+
+object "<u>Character14 : Character</u>" as Character14{
+    character = '8'
+    characterProperty = propertiesB_v2
+}
+
+object "<u>Character15 : Character</u>" as Character15{
+    character = '0'
+    characterProperty = propertiesB_v2
+}
+
+
+object "<u>Character16 : Character</u>" as Character16{
+    character = '0'
+    characterProperty = propertiesB_v2
+}
+
+
+
+
+object "propertiesFactory : CharacterPropertiesFactory" as PropertiesFactory {
+    flyweights = Hashkey1, Hashkey2, Hashkey3, Hashkey4
+}
+
+object "Hashkey1 : Map<String, CharacterProperties>" as Hashkey1{
+    key = "ArialBlack16"
+    value = propertiesA_v1
+}
+
+object "Hashkey2 : Map<String, CharacterProperties>" as Hashkey2{
+    key = "ArialBlack14"
+    value = propertiesA_v2
+}
+
+object "Hashkey3 : Map<String, CharacterProperties>" as Hashkey3{
+    key = "VerdanaBlue18"
+    value = propertiesB_v1
+}
+
+object "Hashkey4 : Map<String, CharacterProperties>" as Hashkey4{
+    key = "VerdanaRed12"
+    value = propertiesB_v2
+}
+
+
+object "propertiesA_v1 : CharacterProperties" as propertiesA_v1{
+    font = "Arial"
+    color = "Black"
+    size = 16
+}
+
+object "propertiesA_v2 : CharacterProperties" as propertiesA_v2{
+    font = "Arial"
+    color = "Black"
+    size = 14
+}
+
+object "propertiesB_v1 : CharacterProperties" as propertiesB_v1{
+    font = "Verdana"
+    color = "Blue"
+    size = 18
+}
+
+object "propertiesB_v2 : CharacterProperties" as propertiesB_v2{
+    font = "Verdana"
+    color = "Red"
+    size = 12
+}
+
+
+
+Character1 --* testDocument
+Character2 --* testDocument
+Character3 --* testDocument
+Character4 --* testDocument
+Character5 --* testDocument
+Character6 --* testDocument
+Character7 --* testDocument
+Character8 --* testDocument
+Character9 --* testDocument
+Character10 --* testDocument
+Character11 --* testDocument
+Character12 --* testDocument
+Character13 --* testDocument
+Character14 --* testDocument
+Character15 --* testDocument
+Character16 --* testDocument
+
+PropertiesFactory --* testDocument
+
+Hashkey1 --* PropertiesFactory
+Hashkey2 --* PropertiesFactory
+Hashkey3 --* PropertiesFactory
+Hashkey4 --* PropertiesFactory
+
+Hashkey1 --> propertiesA_v1
+Hashkey2 --> propertiesA_v2
+Hashkey3 --> propertiesB_v1
+Hashkey4 --> propertiesB_v2
+
+
+
+
+object "<u>readDocumentVerify : Document</u>" as readDocumentVerify{
+    characters = Character1, Character2, Character3,
+    Character4, Character5, Character6, Character7,
+    Character8, Character9, Character10, Character11,
+    Character12, Character13, Character14, Character15,
+    Character16
+    propertiesFactory = propertiesFactory
+}
+
+
+
+object "<u>Character1 : Character</u>" as Character1v2{
+    character = 'H'
+    characterProperty = propertiesC_v1
+}
+
+object "<u>Character2 : Character</u>" as Character2v2{
+    character = 'e'
+    characterProperty = propertiesA_v2_v2
+}
+
+object "<u>Character3 : Character</u>" as Character3v2{
+    character = 'l'
+    characterProperty = propertiesA_v2_v2
+}
+
+object "<u>Character4 : Character</u>" as Character4v2{
+    character = 'l'
+    characterProperty = propertiesA_v2_v2
+}
+
+object "<u>Character5 : Character</u>" as Character5v2{
+    character = 'o'
+    characterProperty = propertiesA_v2_v2
+}
+
+object "<u>Character6 : Character</u>" as Character6v2{
+    character = 'W'
+    characterProperty = propertiesC_v1
+}
+
+object "<u>Character7 : Character</u>" as Character7v2{
+    character = 'o'
+    characterProperty = propertiesA_v2_v2
+}
+
+object "<u>Character8 : Character</u>" as Character8v2{
+    character = 'r'
+    characterProperty = propertiesA_v2_v2
+}
+
+object "<u>Character9 : Character</u>" as Character9v2{
+    character = 'l'
+    characterProperty = propertiesA_v2_v2
+}
+
+object "<u>Character10 : Character</u>" as Character10v2{
+    character = 'd'
+    characterProperty = propertiesA_v2_v2
+}
+
+object "<u>Character11 : Character</u>" as Character11v2{
+    character = 'C'
+    characterProperty = propertiesB_v1_v2
+}
+
+object "<u>Character12 : Character</u>" as Character12v2{
+    character = 'S'
+    characterProperty = propertiesB_v1_v2
+}
+
+object "<u>Character13 : Character</u>" as Character13v2{
+    character = '5'
+    characterProperty = propertiesB_v2_v2
+}
+
+object "<u>Character14 : Character</u>" as Character14v2{
+    character = '8'
+    characterProperty = propertiesB_v2_v2
+}
+
+object "<u>Character15 : Character</u>" as Character15v2{
+    character = '0'
+    characterProperty = propertiesB_v2_v2
+}
+
+
+object "<u>Character16 : Character</u>" as Character16v2{
+    character = '0'
+    characterProperty = propertiesB_v2_v2
+}
+
+
+
+object "propertiesFactory : CharacterPropertiesFactory" as PropertiesFactoryv2 {
+    flyweights = Hashkey1, Hashkey2, Hashkey3, Hashkey4, Hashkey5
+}
+
+object "Hashkey1 : Map<String, CharacterProperties>" as Hashkey1v2{
+    key = "ArialBlack16"
+    value = propertiesA_v1
+}
+
+object "Hashkey2 : Map<String, CharacterProperties>" as Hashkey2v2{
+    key = "ArialBlack14"
+    value = propertiesA_v2
+}
+
+object "Hashkey3 : Map<String, CharacterProperties>" as Hashkey3v2{
+    key = "VerdanaBlue18"
+    value = propertiesB_v1
+}
+
+object "Hashkey4 : Map<String, CharacterProperties>" as Hashkey4v2{
+    key = "VerdanaRed12"
+    value = propertiesB_v2
+}
+
+object "Hashkey5 : Map<String, CharacterProperties>" as Hashkey5v2{
+    key = "CalibriBlue99"
+    value = propertiesB_v2
+}
+
+object "propertiesA_v1 : CharacterProperties" as propertiesA_v1_v2{
+    font = "Arial"
+    color = "Black"
+    size = 16
+}
+
+object "propertiesA_v2 : CharacterProperties" as propertiesA_v2_v2{
+    font = "Arial"
+    color = "Black"
+    size = 14
+}
+
+object "propertiesB_v1 : CharacterProperties" as propertiesB_v1_v2{
+    font = "Verdana"
+    color = "Blue"
+    size = 18
+}
+
+object "propertiesB_v2 : CharacterProperties" as propertiesB_v2_v2{
+    font = "Verdana"
+    color = "Red"
+    size = 12
+}
+
+object "propertiesC_v1 : CharacterProperties" as propertiesC_v1{
+    font = "Calibri"
+    color = "Blue"
+    size = 99
+}
+
+
+
+Character1v2 --* readDocumentVerify
+Character2v2 --* readDocumentVerify
+Character3v2 --* readDocumentVerify
+Character4v2 --* readDocumentVerify
+Character5v2 --* readDocumentVerify
+Character6v2 --* readDocumentVerify
+Character7v2 --* readDocumentVerify
+Character8v2 --* readDocumentVerify
+Character9v2 --* readDocumentVerify
+Character10v2 --* readDocumentVerify
+Character11v2 --* readDocumentVerify
+Character12v2 --* readDocumentVerify
+Character13v2 --* readDocumentVerify
+Character14v2 --* readDocumentVerify
+Character15v2 --* readDocumentVerify
+Character16v2 --* readDocumentVerify
+
+PropertiesFactoryv2 --* readDocumentVerify
+
+Hashkey1v2 --* PropertiesFactoryv2
+Hashkey2v2 --* PropertiesFactoryv2
+Hashkey3v2 --* PropertiesFactoryv2
+Hashkey4v2 --* PropertiesFactoryv2
+Hashkey5v2 --* PropertiesFactoryv2
+
+Hashkey1v2 --> propertiesA_v1_v2
+Hashkey2v2 --> propertiesA_v2_v2
+Hashkey3v2 --> propertiesB_v1_v2
+Hashkey4v2 --> propertiesB_v2_v2
+Hashkey5v2 --> propertiesC_v1
+
+@enduml
