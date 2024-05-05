@@ -23,7 +23,7 @@ public class VendingMachine {
         snacks.put("Cheetos", new Snack("Cheetos", 2.0, 10));
         snacks.put("Doritos", new Snack("Doritos", 2.0, 10));
         snacks.put("KitKat", new Snack("KitKat", 1.0, 10));
-        snacks.put("Snickers", new Snack("Snickers", 1.0, 0)); // Testing zero quantity
+        snacks.put("Snickers", new Snack("Snickers", 1.0, 1)); // Testing zero quantity
     }
 
     public StateOfVendingMachine getCurrentState() {
@@ -64,6 +64,8 @@ public class VendingMachine {
 
     public void selectSnack(String snackName) {
         currentState.selectSnack(snackName);
+        setSelectedSnack(snackName); // Update the selected snack
+        setCurrentState(getWaitingForMoneyState()); // Reset state to "Waiting for Money"
     }
 
     public void insertMoney(double amount) {

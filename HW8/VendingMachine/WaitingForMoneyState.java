@@ -1,6 +1,6 @@
 package HW8.VendingMachine;
 
-public class WaitingForMoneyState implements StateOfVendingMachine {
+class WaitingForMoneyState implements StateOfVendingMachine {
     private VendingMachine vendingMachine;
 
     public WaitingForMoneyState(VendingMachine vendingMachine) {

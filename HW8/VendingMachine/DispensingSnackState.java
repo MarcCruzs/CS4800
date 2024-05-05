@@ -1,6 +1,6 @@
 package HW8.VendingMachine;
 
-public class DispensingSnackState implements StateOfVendingMachine {
+class DispensingSnackState implements StateOfVendingMachine {
     private VendingMachine vendingMachine;
 
     public DispensingSnackState(VendingMachine vendingMachine) {
@@ -15,14 +15,15 @@ public class DispensingSnackState implements StateOfVendingMachine {
         System.out.println("Already dispensing snack.");
     }
 
-    public void dispenseSnack() {
-        Snack selectedSnack = vendingMachine.getSelectedSnack();
-        if (selectedSnack.getQuantity() > 0) {
-            System.out.println("Dispensing " + selectedSnack.getName());
-            selectedSnack.setQuantity(selectedSnack.getQuantity() - 1);
+    public void dispenseSnack(Snack snack, double insertedMoney) {
+        if (snack.getQuantity() > 0 && insertedMoney >= snack.getPrice()) {
+            System.out.println("Dispensing " + snack.getName());
+            snack.setQuantity(snack.getQuantity() - 1);
+            vendingMachine.setCurrentState(vendingMachine.getIdleState()); // Transition to Idle state
         } else {
-            System.out.println("Out of stock for " + selectedSnack.getName());
+            System.out.println("Out of stock for " + snack.getName() + " or insufficient funds.");
+            vendingMachine.setCurrentState(vendingMachine.getIdleState()); // Transition to Idle state
         }
-        vendingMachine.setCurrentState(vendingMachine.getIdleState());
     }
+
 }

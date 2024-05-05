@@ -1,6 +1,8 @@
-package HW8.VendingMachine;
+package HW8.VendingMachine.Handlers;
 
-public class CokeHandler implements SnackDispenseHandler {
+import HW8.VendingMachine.Snack;
+
+public class PepsiHandler implements SnackDispenseHandler {
     private SnackDispenseHandler nextHandler;
 
     public void setNextHandler(SnackDispenseHandler handler) {
@@ -8,8 +10,8 @@ public class CokeHandler implements SnackDispenseHandler {
     }
 
     public void dispense(Snack snack, double insertedMoney) {
-        if (snack.getName().equals("Coke") && snack.getQuantity() > 0 && insertedMoney >= snack.getPrice()) {
-            System.out.println("Dispensing " + snack.getName());
+        if (snack.getName().equals("Pepsi") && snack.getQuantity() > 0 && insertedMoney >= snack.getPrice()) {
+            System.out.println("Dispensing " + snack.getName() + "\n");
             snack.setQuantity(snack.getQuantity() - 1);
         } else if (nextHandler != null) {
             nextHandler.dispense(snack, insertedMoney);

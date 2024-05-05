@@ -1,6 +1,6 @@
 package HW8.VendingMachine;
 
-public class IdleState implements StateOfVendingMachine {
+class IdleState implements StateOfVendingMachine {
     private VendingMachine vendingMachine;
 
     public IdleState(VendingMachine vendingMachine) {
