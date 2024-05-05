@@ -1,6 +1,6 @@
 package HW8.VendingMachine;
 
-class Snack {
+public class Snack {
     private String name;
     private double price;
     private int quantity;

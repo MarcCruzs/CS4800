@@ -1,6 +1,6 @@
 package HW8.VendingMachine;
 
-class WaitingForMoneyState implements StateOfVendingMachine {
+public class WaitingForMoneyState implements StateOfVendingMachine {
     private VendingMachine vendingMachine;
 
     public WaitingForMoneyState(VendingMachine vendingMachine) {
@@ -15,7 +15,7 @@ class WaitingForMoneyState implements StateOfVendingMachine {
         System.out.println("Money inserted: " + amount);
         vendingMachine.setInsertedMoney(amount);
         if (amount >= vendingMachine.getSelectedSnack().getPrice()) {
-            vendingMachine.setCurrentState(vendingMachine.getDispensingSnackState());
+            vendingMachine.getCurrentState().dispenseSnack();
         } else {
             System.out.println("Please insert more money.");
         }

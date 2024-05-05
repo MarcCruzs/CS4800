@@ -1,6 +1,6 @@
 package HW8.VendingMachine;
 
-class CokeHandler implements SnackDispenseHandler {
+public class CokeHandler implements SnackDispenseHandler {
     private SnackDispenseHandler nextHandler;
 
     public void setNextHandler(SnackDispenseHandler handler) {
@@ -13,6 +13,8 @@ class CokeHandler implements SnackDispenseHandler {
             snack.setQuantity(snack.getQuantity() - 1);
         } else if (nextHandler != null) {
             nextHandler.dispense(snack, insertedMoney);
+        } else {
+            System.out.println("No handler available for " + snack.getName());
         }
     }
 }

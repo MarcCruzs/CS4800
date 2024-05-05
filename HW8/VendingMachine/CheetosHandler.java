@@ -1,6 +1,6 @@
 package HW8.VendingMachine;
 
-class CheetosHandler implements SnackDispenseHandler {
+public class CheetosHandler implements SnackDispenseHandler {
     private SnackDispenseHandler nextHandler;
 
     public void setNextHandler(SnackDispenseHandler handler) {

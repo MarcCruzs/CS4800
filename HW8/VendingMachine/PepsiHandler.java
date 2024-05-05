@@ -1,6 +1,6 @@
 package HW8.VendingMachine;
 
-class PepsiHandler implements SnackDispenseHandler {
+public class PepsiHandler implements SnackDispenseHandler {
     private SnackDispenseHandler nextHandler;
 
     public void setNextHandler(SnackDispenseHandler handler) {

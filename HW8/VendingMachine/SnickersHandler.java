@@ -1,6 +1,6 @@
 package HW8.VendingMachine;
 
-class SnickersHandler implements SnackDispenseHandler {
+public class SnickersHandler implements SnackDispenseHandler {
     private SnackDispenseHandler nextHandler;
 
     public void setNextHandler(SnackDispenseHandler handler) {
