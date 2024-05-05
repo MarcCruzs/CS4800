@@ -1,56 +1,48 @@
 package HW8.VendingMachine;
 
-import HW8.VendingMachine.Handlers.*;
-
 public class Main {
     public static void main(String[] args) {
-        // Creating the Vending Machine
+        // Create snacks
+        Snack coke = new Snack("Coke", 1.5, 5);
+        Snack pepsi = new Snack("Pepsi", 1.5, 3);
+        Snack cheetos = new Snack("Cheetos", 2, 4);
+        Snack doritos = new Snack("Doritos", 2, 2);
+        Snack kitKat = new Snack("KitKat", 1.2, 3);
+        Snack snickers = new Snack("Snickers", 1.8, 0); // Quantity hits 0 here
+
+        // Create vending machine
         VendingMachine vendingMachine = new VendingMachine();
 
-        // Setting up the Chain of Responsibility
-        SnackDispenseHandler cokeHandler = new CokeHandler(vendingMachine);
-        SnackDispenseHandler pepsiHandler = new PepsiHandler(vendingMachine);
-        SnackDispenseHandler cheetosHandler = new CheetosHandler(vendingMachine);
-        SnackDispenseHandler doritosHandler = new DoritosHandler(vendingMachine);
-        SnackDispenseHandler kitKatHandler = new KitKatHandler(vendingMachine);
-        SnackDispenseHandler snickersHandler = new SnickersHandler(vendingMachine);
+        // Add snacks to vending machine
+        vendingMachine.addSnack(coke);
+        vendingMachine.addSnack(pepsi);
+        vendingMachine.addSnack(cheetos);
+        vendingMachine.addSnack(doritos);
+        vendingMachine.addSnack(kitKat);
+        vendingMachine.addSnack(snickers);
 
-        // Connecting the chain
+        // Create chain of responsibility
+        SnackDispenseHandler cokeHandler = new SnackDispenseHandler(vendingMachine.getSnacks());
+        SnackDispenseHandler pepsiHandler = new SnackDispenseHandler(vendingMachine.getSnacks());
+        SnackDispenseHandler cheetosHandler = new SnackDispenseHandler(vendingMachine.getSnacks());
+        SnackDispenseHandler doritosHandler = new SnackDispenseHandler(vendingMachine.getSnacks());
+        SnackDispenseHandler kitKatHandler = new SnackDispenseHandler(vendingMachine.getSnacks());
+        SnackDispenseHandler snickersHandler = new SnackDispenseHandler(vendingMachine.getSnacks());
+
         cokeHandler.setNextHandler(pepsiHandler);
         pepsiHandler.setNextHandler(cheetosHandler);
         cheetosHandler.setNextHandler(doritosHandler);
         doritosHandler.setNextHandler(kitKatHandler);
         kitKatHandler.setNextHandler(snickersHandler);
 
-        // Adding snacks to the vending machine and testing the chain
+        // Select and dispense snacks
         vendingMachine.selectSnack("Coke");
-        vendingMachine.insertMoney(1.5);
-        cokeHandler.dispense(vendingMachine.getSelectedSnack(), vendingMachine.getInsertedMoney());
-
-        vendingMachine.selectSnack("Pepsi");
-        vendingMachine.insertMoney(1.5);
-        cokeHandler.dispense(vendingMachine.getSelectedSnack(), vendingMachine.getInsertedMoney());
-
-        vendingMachine.selectSnack("Cheetos");
-        vendingMachine.insertMoney(2.0); // Inserting enough money
-        cokeHandler.dispense(vendingMachine.getSelectedSnack(), vendingMachine.getInsertedMoney());
-
-        vendingMachine.selectSnack("Doritos");
-        vendingMachine.insertMoney(2.0); // Inserting enough money
-        cokeHandler.dispense(vendingMachine.getSelectedSnack(), vendingMachine.getInsertedMoney());
-
-        vendingMachine.selectSnack("KitKat");
-        vendingMachine.insertMoney(1.0); // Inserting enough money
-        cokeHandler.dispense(vendingMachine.getSelectedSnack(), vendingMachine.getInsertedMoney());
+        vendingMachine.insertMoney(2);
+        vendingMachine.dispenseSnack();
 
         vendingMachine.selectSnack("Snickers");
-        vendingMachine.insertMoney(1.0); // Inserting enough money
-        cokeHandler.dispense(vendingMachine.getSelectedSnack(), vendingMachine.getInsertedMoney());
-
-        // Attempting to dispense Snickers again (quantity should be 0)
-        vendingMachine.selectSnack("Snickers");
-        vendingMachine.insertMoney(1.0); // Inserting enough money
-        cokeHandler.dispense(vendingMachine.getSelectedSnack(), vendingMachine.getInsertedMoney());
+        vendingMachine.insertMoney(2);
+        vendingMachine.dispenseSnack();
     }
 }
 
