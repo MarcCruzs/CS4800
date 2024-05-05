@@ -1,6 +1,6 @@
 package HW8.VendingMachine;
 
-public class Snack {
+class Snack {
     private String name;
     private double price;
     private int quantity;
@@ -23,7 +23,7 @@ public class Snack {
         return quantity;
     }
 
-    public void decreaseQuantity() {
-        quantity--;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

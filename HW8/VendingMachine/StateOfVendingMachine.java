@@ -1,8 +1,7 @@
 package HW8.VendingMachine;
 
-public interface StateOfVendingMachine {
-    void selectSnack(String snack);
-    void insertMoney(double amount);
-    void dispenseSnack();
+interface StateOfVendingMachine {
+    void selectSnack(VendingMachine vendingMachine, String snackName);
+    void insertMoney(VendingMachine vendingMachine, double amount);
+    void dispenseSnack(VendingMachine vendingMachine);
 }
-

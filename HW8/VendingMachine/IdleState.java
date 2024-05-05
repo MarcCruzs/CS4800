@@ -1,25 +1,23 @@
 package HW8.VendingMachine;
 
-public class IdleState implements StateOfVendingMachine {
-    private VendingMachine vendingMachine;
+class IdleState implements StateOfVendingMachine {
 
-    public IdleState(VendingMachine vendingMachine) {
-        this.vendingMachine = vendingMachine;
+    public void selectSnack(VendingMachine vendingMachine, String snackName) {
+        Snack snack = vendingMachine.getSnack(snackName);
+        if (snack != null && snack.getQuantity() > 0) {
+            vendingMachine.setCurrentSnack(snack);
+            vendingMachine.setState(new WaitingForMoneyState());
+            System.out.println(snackName + " has been selected for $" + snack.getQuantity());
+        } else if (snack.getQuantity() == 0){
+            System.out.println(snackName + " is out of stock.");
+        } else{
+            System.out.println(snackName + " is not available.");
+        }
     }
 
-    @Override
-    public void selectSnack(String snack) {
-        System.out.println("Snack selected: " + snack);
-        vendingMachine.setCurrentState(vendingMachine.getWaitingForMoneyState());
+    public void insertMoney(VendingMachine vendingMachine, double amount) {
     }
 
-    @Override
-    public void insertMoney(double amount) {
-        System.out.println("Please select a snack first.");
-    }
-
-    @Override
-    public void dispenseSnack() {
-        System.out.println("Please select a snack first.");
+    public void dispenseSnack(VendingMachine vendingMachine) {
     }
 }

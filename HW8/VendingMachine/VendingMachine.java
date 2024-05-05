@@ -5,58 +5,57 @@ import java.util.Map;
 
 public class VendingMachine {
     private StateOfVendingMachine currentState;
-    private Map<String, Snack> snacks = new HashMap<>();
-    private double amountInserted;
+    private Map<String, Snack> snacks;
+    private double currentAmount;
+    private Snack currentSnack;
 
     public VendingMachine() {
-        currentState = new IdleState(this);
+        currentState = new IdleState();
+        snacks = new HashMap<>();
+        currentAmount = 0.0;
     }
 
-    public void selectSnack(String snack) {
-        currentState.selectSnack(snack);
+    public void setState(StateOfVendingMachine state) {
+        currentState = state;
     }
 
-    public void insertMoney(double amount) {
-        currentState.insertMoney(amount);
-    }
-
-    public void dispenseSnack() {
-        currentState.dispenseSnack();
-    }
-
-    public void setCurrentState(StateOfVendingMachine currentState) {
-        this.currentState = currentState;
+    public StateOfVendingMachine getState() {
+        return currentState;
     }
 
     public void addSnack(Snack snack) {
         snacks.put(snack.getName(), snack);
     }
 
-    public StateOfVendingMachine getIdleState() {
-        return new IdleState(this);
+    public Snack getSnack(String snackName) {
+        return snacks.get(snackName);
     }
 
-    public StateOfVendingMachine getWaitingForMoneyState() {
-        return new WaitingForMoneyState(this);
+    public void selectSnack(String snackName) {
+        currentState.selectSnack(this, snackName);
     }
 
-    public StateOfVendingMachine getDispensingSnackState() {
-        return new DispensingSnackState(this);
+    public void insertMoney(double amount) {
+        currentState.insertMoney(this, amount);
     }
 
-    public Map<String, Snack> getSnacks() {
-        return snacks;
+    public void dispenseSnack() {
+        currentState.dispenseSnack(this);
     }
 
-    public void setAmountInserted(double amountInserted) {
-        this.amountInserted = amountInserted;
+    public double getCurrentAmount() {
+        return currentAmount;
     }
 
-    public double getAmountInserted() {
-        return amountInserted;
+    public void setCurrentAmount(double currentAmount) {
+        this.currentAmount = currentAmount;
     }
 
-    public String getSelectedSnack() {
-        currentState.getSelectedSnack();
+    public Snack getCurrentSnack() {
+        return currentSnack;
+    }
+
+    public void setCurrentSnack(Snack currentSnack) {
+        this.currentSnack = currentSnack;
     }
 }
