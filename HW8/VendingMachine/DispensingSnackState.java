@@ -2,7 +2,7 @@ package HW8.VendingMachine;
 
 import java.util.Map;
 
-class DispensingSnackState implements StateOfVendingMachine {
+public class DispensingSnackState implements StateOfVendingMachine {
 
     public void selectSnack(VendingMachine vendingMachine, String snackName) {
     }

@@ -1,6 +1,6 @@
 package HW8.VendingMachine;
 
-class WaitingForMoneyState implements StateOfVendingMachine {
+public class WaitingForMoneyState implements StateOfVendingMachine {
 
     public void selectSnack(VendingMachine vendingMachine, String snackName) {
     }
