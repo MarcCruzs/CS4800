@@ -1,5 +1,6 @@
-package HW8.VendingMachine;
+package HW8.VendingMachineTest;
 
+import HW8.VendingMachine.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
