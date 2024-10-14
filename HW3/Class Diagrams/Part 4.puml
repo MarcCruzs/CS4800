@@ -1,0 +1,22 @@
+@startuml
+
+class Folder{
+    - name: String
+    - files: ArrayList<File>
+    - subfolders: ArrayList<Folder>
+    + removeSubfolder(subFolderName: String) : void
+    + addSubfolder(subFolderName: String) : void
+    + getSubfolder(subFolderName: String) : Folder
+    + removeFile(file : File) : boolean
+    + addFile(fileName : String) : void
+    + toString() : String
+    + prinerFolderCOntents() : void
+}
+
+class File{
+    - name: String
+    + toString() : String
+}
+
+Folder *-- File
+@enduml

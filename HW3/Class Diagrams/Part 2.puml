@@ -1,0 +1,24 @@
+@startuml
+class Ship {
+    # name: String
+    # yearBuilt: String
+    + toString()
+    + printShip()
+}
+
+class CruiseShip {
+    - maxNumberPassengers: int
+    + toString() : String
+}
+
+class CargoShip {
+    - cargoCapacityInTonnage: int
+    + toString() : String
+}
+
+Ship <|-- CruiseShip
+Ship <|-- CargoShip
+
+
+
+@enduml

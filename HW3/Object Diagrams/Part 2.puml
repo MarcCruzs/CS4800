@@ -1,0 +1,25 @@
+@startuml
+
+object "<u>ships[0]:Ship</u>" as s0{
+    name = "Titanic"
+    yearBuilt = "March31st,1909"
+}
+
+object "<u>ships[1]:CruiseShip</u>" as s1{
+    name = "MVGemini"
+    yearBuilt = "May30th,1991"
+    maxNumberPassengers = 100
+}
+
+object "<u>ships[2]:CargoShip</u>" as s2{
+    name = "EverGiven"
+    yearBuilt = "September25th,2018"
+    cargoCapacityInTonnage = 220940
+}
+
+map "<u>ships : ship[]</u>" as array {
+    0 *--> s0
+    1 *--> s1
+    2 *--> s2
+}
+@enduml
