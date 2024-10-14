@@ -1,0 +1,26 @@
+@startuml
+
+class Course{
+    - name: String
+    - instructors: ArrayList<Instructor>
+    - textbooks: ArrayList<Textbook>
+    + toString() : String
+    + printCourse() : void
+}
+class Instructor{
+    - firstName: String
+    - lastName: String
+    - officeNumber: String
+    + toString() : String
+}
+class Textbook{
+    - title: String
+    - author: String
+    - publisher: String
+    + toString() : String
+}
+
+Course o-- Instructor
+Course o-- Textbook
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+abstract class Employee {
+    - firstName: String
+    - lastName: String
+    - socialSecurityNumber: String
+    + toString() : String
+}
+
+class SalariedEmployee{
+    - weeklySalary: double
+    + toString() : String
+}
+
+class HourlyEmployee {
+    - wage: double
+    - hoursWorked: int
+    + toString() : String
+}
+
+class CommissionEmployee{
+    - commissionRate: double
+    - grossSales: double
+    + toString() : String
+}
+
+class BaseEmployee{
+    - baseSalary: double
+    + toString() : String
+}
+
+Employee <|-- SalariedEmployee
+Employee <|-- HourlyEmployee
+Employee <|-- CommissionEmployee
+Employee <|-- BaseEmployee
+
+@enduml
